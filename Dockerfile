@@ -12,10 +12,6 @@ RUN apt update -y \
     ca-certificates curl gnupg2 software-properties-common python3-pip unzip rsync git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN /usr/bin/python3 -m pip install --no-cache-dir pip -U \
-    && /usr/bin/python3 -m pip install --no-cache-dir -r tests/requirements.txt \
-    && python3 -m pip install --no-cache-dir -r requirements.txt \
-    && update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
 ENV LANG=C.UTF-8
 
@@ -23,7 +19,6 @@ WORKDIR /kubeadm
 COPY . .
 
 RUN /usr/bin/python3 -m pip install --no-cache-dir pip -U \
-    && /usr/bin/python3 -m pip install --no-cache-dir -r tests/requirements.txt \
     && python3 -m pip install --no-cache-dir -r requirements.txt \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
